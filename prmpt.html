@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Raushani 💘</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+  background-size:400% 400%;
+  animation:gradientMove 8s ease infinite;
+  overflow-x:hidden;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+
+h1{
+  color:#fff;
+  font-size:2.2rem;
+  margin-bottom:20px;
+}
+
+.buttons{display:flex;gap:15px;}
+
+button{
+  padding:14px 26px;
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+#yesBtn{background:#ff4d6d;color:#fff;}
+#noBtn{
+  background:#fff;
+  color:#ff4d6d;
+  position:relative;
+}
+
+/* Shake animation */
+@keyframes shake{
+  0%{transform:translate(0,0);}
+  25%{transform:translate(5px,0);}
+  50%{transform:translate(-5px,0);}
+  75%{transform:translate(5px,0);}
+  100%{transform:translate(0,0);}
+}
+
+.teaseBtn{
+  background:#fff;
+  color:#ff4d6d;
+  display:none;
+  opacity:0;
+  transform:scale(0.8);
+  transition:all 0.4s ease;
+}
+
+.teaseBtn.show{
+  display:inline-block;
+  opacity:1;
+  transform:scale(1);
+}
+
+.success{
+  display:none;
+  color:#fff;
+  margin-top:20px;
+  animation:glowPulse 2s infinite alternate;
+}
+
+.success h2{font-size:2rem;}
+
+@keyframes glowPulse{
+  from{text-shadow:0 0 10px #fff;}
+  to{text-shadow:0 0 25px #ff99cc;}
+}
+
+.quote{
+  font-size:1.6rem;
+  color:#fff;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.quote.show{opacity:1;transform:translateY(0);}
+
+footer{
+  background:rgba(255,255,255,0.25);
+  padding:40px 20px;
+  width:100%;
+  color:#fff;
+}
+
+footer a{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:15px;
+  background:#ff4d6d;
+  padding:12px 22px;
+  border-radius:30px;
+  color:#fff;
+  text-decoration:none;
+  font-size:1.1rem;
+}
+
+.heart{
+  position:fixed;
+  bottom:-20px;
+  animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-120vh);opacity:0;}
+}
+
+.magic{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  color:#fff;
+  font-size:1.5rem;
+  z-index:9999;
+}
+
+.typeLine{
+  margin-top:15px;
+  font-size:1.2rem;
+}
+</style>
+</head>
+
+<body>
+
+<section>
+  <h1>Raushani 💖<br>Will you be my Valentine? 💘</h1>
+
+  <div class="buttons" id="firstBtns">
+    <button id="yesBtn">YES 💖</button>
+    <button id="noBtn">NO 😜</button>
+  </div>
+
+  <button class="teaseBtn" id="btn1">Soch lo ache se 😏</button>
+  <button class="teaseBtn" id="btn2">Confirm pakka? 😍</button>
+  <button class="teaseBtn" id="btn3">Last chance Raushani 💕</button>
+
+  <div class="success" id="successMsg">
+    <h2>
+      Raushani 💖<br>
+      This Valentine is officially OURS ✨
+    </h2>
+    <div class="typeLine" id="typeLine"></div>
+  </div>
+</section>
+
+<section>
+  <div class="quote" id="quote">
+    “Some people make days brighter,<br>
+    but you, Raushani… make life beautiful 💫”
+  </div>
+</section>
+
+<footer>
+  <p>Visit my Instagram 💌</p>
+  <a href="https://www.instagram.com/ankur_919945/" target="_blank">
+    📸 @ankur_919945
+  </a>
+</footer>
+
+<script>
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+const firstBtns=document.getElementById("firstBtns");
+
+const btn1=document.getElementById("btn1");
+const btn2=document.getElementById("btn2");
+const btn3=document.getElementById("btn3");
+
+const successMsg=document.getElementById("successMsg");
+const quote=document.getElementById("quote");
+const typeLine=document.getElementById("typeLine");
+
+/* 🔥 NO BUTTON COMBO MODE */
+
+let noTexts=[
+"NO 😜",
+"Are you sure? 🤨",
+"Think again 😏",
+"Wrong button 😂",
+"Raushaniii 👀",
+"Please don't 🥺",
+"System error ❌"
+];
+
+let size=1;
+
+noBtn.addEventListener("mouseover",()=>{
+  // Move
+  let x=Math.random()*250-125;
+  let y=Math.random()*200-100;
+  noBtn.style.transform=`translate(${x}px,${y}px) scale(${size})`;
+
+  // Change text
+  noBtn.innerText=noTexts[Math.floor(Math.random()*noTexts.length)];
+
+  // Shrink
+  if(size>0.5){
+    size-=0.05;
+  }
+
+  // Shake
+  noBtn.style.animation="shake 0.3s";
+  setTimeout(()=>noBtn.style.animation="",300);
+});
+
+noBtn.addEventListener("click",(e)=>{
+  e.preventDefault();
+  alert("Nice try 😜\nBut NO is disabled 💖");
+  yesBtn.click(); // auto trigger YES flow
+});
+
+/* MAGIC SPELL */
+function loveSpell(nextAction){
+  const spell=document.createElement("div");
+  spell.className="magic";
+  spell.innerHTML="✨ Casting Love Spell… ✨<span>Hold on Raushani 💖</span>";
+  document.body.appendChild(spell);
+
+  setTimeout(()=>{
+    spell.remove();
+    nextAction();
+    heartBurst();
+  },1500);
+}
+
+/* YES FLOW */
+yesBtn.addEventListener("click",()=>{
+  firstBtns.style.display="none";
+  loveSpell(()=> btn1.classList.add("show"));
+});
+
+btn1.addEventListener("click",()=>{
+  btn1.classList.remove("show");
+  loveSpell(()=> btn2.classList.add("show"));
+});
+
+btn2.addEventListener("click",()=>{
+  btn2.classList.remove("show");
+  loveSpell(()=> btn3.classList.add("show"));
+});
+
+btn3.addEventListener("click",()=>{
+  btn3.classList.remove("show");
+  loveSpell(()=>{
+    successMsg.style.display="block";
+    typeWriter("I love you Raushani 💖 – Ankur");
+  });
+});
+
+/* SCROLL QUOTE */
+window.addEventListener("scroll",()=>{
+  if(quote.getBoundingClientRect().top < window.innerHeight-100){
+    quote.classList.add("show");
+  }
+});
+
+/* HEARTS */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💖";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=Math.random()*20+15+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,500);
+
+function heartBurst(){
+  for(let i=0;i<20;i++){
+    setTimeout(createHeart,i*100);
+  }
+}
+
+function typeWriter(text,i=0){
+  if(i<text.length){
+    typeLine.innerHTML+=text.charAt(i);
+    setTimeout(()=>typeWriter(text,i+1),60);
+  }
+}
+</script>
+
+</body>
+</html>
